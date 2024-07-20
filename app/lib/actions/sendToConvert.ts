@@ -11,7 +11,7 @@ export async function sendToConvert(url: string) {
         const dataToSend = {url}
         const newVidId = await addNewVideo(url); 
         //console.log(newVidId);
-        const response = await axios.post(`http://${process.env.BACKEND_URL}:3001/download?id=${newVidId}`, dataToSend, {
+        const response = await axios.post(`${process.env.BACKEND_URL}/download?id=${newVidId}`, dataToSend, {
             headers: {
                 'Content-Type': 'application/json',
             },
