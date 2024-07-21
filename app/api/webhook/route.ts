@@ -29,7 +29,7 @@ export async function POST(request:NextRequest) {
         // first I should save the text
         const updateResponse = await updateVideo(id, text); // update hua 
         const note = await getVideoWithNotes(id);
-        //console.log(id, text);
+        console.log(note);
         return NextResponse.json({
             message: "Data received successfully",
             receivedData: { id, text }
