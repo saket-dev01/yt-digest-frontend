@@ -1,10 +1,8 @@
-import { generateNotes } from '@/app/lib/actions/generateNotes';
+
 'use server'
 import { revalidatePath } from 'next/cache'
 import axios from 'axios'
-import { updateVideo } from './updateVideo'
 import { addNewVideo } from './addNewVideo'
-import { getVideoWithNotes } from './getVideoWithNotes';
 export async function sendToConvert(url: string) {
     
     try {        

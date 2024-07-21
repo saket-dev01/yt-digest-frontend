@@ -28,8 +28,7 @@ export function YoutubeForm() {
       setUrl("");
       setIsSubmitted(true);
       
-      const result = await sendToConvert(url);
-      //console.log(result);
+      const result = await sendToConvert(url); // just send to convert
       setIsSubmitted(false);
     } catch (error) {
       console.error(error);
