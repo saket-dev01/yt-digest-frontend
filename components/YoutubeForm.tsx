@@ -1,5 +1,6 @@
 "use client"
 import * as React from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -12,26 +13,25 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { sendToConvert } from "@/app/lib/actions/sendToConvert"
-import { useRef, useState } from "react"
 import { ButtonLoading } from "./ButtonLoading"
 import { validateYTLink } from "@/app/lib/actions/validateYTLink"
 import { addNewVideo } from "@/app/lib/actions/addNewVideo"
-
 
 export function YoutubeForm() {
   const [url, setUrl] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  async function handleSubmit(url : string) {
+  async function handleSubmit() {
     try {
       validateYTLink(url);
-      setUrl("");
       setIsSubmitted(true);
       
       const result = await sendToConvert(url); // just send to convert
+      setUrl(""); // Clear the input field
       setIsSubmitted(false);
     } catch (error) {
       console.error(error);
+      setIsSubmitted(false);
     }
   }
 
@@ -42,17 +42,22 @@ export function YoutubeForm() {
         <CardDescription>Paste a Youtube URL to get a Digest.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="url">URL</Label>
-              <Input id="url" placeholder="Youtube URL" onChangeCapture={e => setUrl(e.currentTarget.value)} />
+              <Input 
+                id="url" 
+                placeholder="Youtube URL" 
+                value={url} // Bind input value to the state
+                onChange={(e) => setUrl(e.currentTarget.value)} // Update state on change
+              />
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        {isSubmitted ? <ButtonLoading /> : <Button onClick={() => handleSubmit(url)}>Process</Button>}
+        {isSubmitted ? <ButtonLoading /> : <Button onClick={handleSubmit}>Process</Button>}
       </CardFooter>
     </Card>
   );
