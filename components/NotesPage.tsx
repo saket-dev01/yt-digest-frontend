@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
@@ -12,22 +12,29 @@ interface NotesRendererProps {
 }
 
 const NotesRenderer: React.FC<NotesRendererProps> = ({ notes }) => {
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
+  const [currentTheme, setCurrentTheme] = useState(resolvedTheme);
+
+  useEffect(() => {
+    setCurrentTheme(resolvedTheme);
+  }, [resolvedTheme]);
 
   return (
     <div className="mt-4">
       {notes && (
         <>
           <div className="flex items-center justify-between mb-2">
-            <h2 className={`text-xl pl-6 pb-2 m-2 font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>YT Digest</h2>
+            <h2 className={`text-xl pl-6 pb-2 m-2 font-bold ${currentTheme === 'dark' ? 'text-white' : 'text-black'}`}>
+              YT Digest
+            </h2>
             <div className="flex items-center mx-6 mb-2">
               <ModeToggle />
-              <Link href="/convert" className={`ml-4 px-4 py-2 rounded ${theme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'}`}>
+              <Link href="/convert" className={`ml-4 px-4 py-2 rounded ${currentTheme === 'dark' ? 'bg-white text-black' : 'bg-black text-white'}`}>
                 Home
               </Link>
             </div>
           </div>
-          <div className={`p-8 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+          <div className={`p-8 ${currentTheme === 'dark' ? 'bg-gray-900' : 'bg-white'} ${currentTheme === 'dark' ? 'text-white' : 'text-black'}`}>
             <ReactMarkdown
               rehypePlugins={[rehypeRaw]}
               components={{
