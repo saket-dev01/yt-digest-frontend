@@ -5,7 +5,7 @@ export const getAllVideos = async () => {
         orderBy: {
             createdAt: 'desc'
         },
-        take: 10
+        take: 20
     });
     return videos;
 };

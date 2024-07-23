@@ -1,5 +1,6 @@
 import {YoutubeForm} from "@/components/YoutubeForm";
 import AllVideoCards from "@/components/AllVideoCards";
+import { ModeToggle } from "@/components/mode-toggle";
 export default function Page() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen pt-10">

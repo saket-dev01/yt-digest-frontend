@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -26,11 +24,8 @@
     --input: 220 13% 91%;
     --ring: 224 71.4% 4.1%;
     --radius: 0.5rem;
-    --chart-1: ;
-    --chart-2: ;
-    --chart-3: ;
-    --chart-4: ;
-    --chart-5: ;
+    --link-color: #1e40af; /* Custom blue color for links */
+    --link-hover-color: #3b82f6; /* Custom blue hover color */
   }
 
   .dark {
@@ -53,10 +48,7 @@
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
     --ring: 216 12.2% 83.9%;
-    --chart-1: ;
-    --chart-2: ;
-    --chart-3: ;
-    --chart-4: ;
-    --chart-5: ;
+    --link-color: #60a5fa; /* Custom light blue color for dark mode links */
+    --link-hover-color: #93c5fd; /* Custom light blue hover color */
   }
 }
