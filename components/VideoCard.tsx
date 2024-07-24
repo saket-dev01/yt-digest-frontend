@@ -21,10 +21,20 @@ export default function VideoCard({ id, title, imgUrl, status }: { id: string, t
                                 <div className="h-2 w-2 rounded-full bg-green-500" />
                                 <span className="text-sm text-muted-foreground">Completed</span>
                             </>
+                        ) : status === Status.FAILED ? (
+                            <>
+                                <div className="h-2 w-2 rounded-full bg-red-500" />
+                                <span className="text-sm text-muted-foreground">Failed</span>
+                            </>
+                        ) : status === Status.LENGTHISSUE ? (
+                            <>
+                                <div className="h-2 w-2 rounded-full bg-red-500" />
+                                <span className="text-sm text-muted-foreground">Length Exceeded</span>
+                            </>
                         ) : (
                             <>
                                 <div className="h-2 w-2 rounded-full bg-yellow-500" />
-                                <span className="text-sm text-muted-foreground">Processing</span>
+                                <span className="text-sm text-muted-foreground">Pending</span>
                             </>
                         )}
                     </div>
