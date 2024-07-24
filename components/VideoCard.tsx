@@ -24,7 +24,7 @@ export default function VideoCard({ id, title, imgUrl, status }: { id: string, t
                         ) : status === Status.FAILED ? (
                             <>
                                 <div className="h-2 w-2 rounded-full bg-red-500" />
-                                <span className="text-sm text-muted-foreground">Failed</span>
+                                <span className="text-sm text-muted-foreground">Failed - Max Length 1 Hour</span>
                             </>
                         ) : status === Status.LENGTHISSUE ? (
                             <>
