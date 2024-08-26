@@ -20,10 +20,10 @@ const NotesRenderer: React.FC<NotesRendererProps> = ({ notes }) => {
   }, [resolvedTheme]);
 
   return (
-    <div className="mt-4">
+    <div className="">
       {notes && (
         <>
-          <div className="flex items-center justify-between mb-2">
+          {/* <div className="flex items-center justify-between mb-2">
             <h2 className={`text-xl pl-6 pb-2 m-2 font-bold ${currentTheme === 'dark' ? 'text-white' : 'text-black'}`}>
               YT Digest
             </h2>
@@ -33,7 +33,7 @@ const NotesRenderer: React.FC<NotesRendererProps> = ({ notes }) => {
                 Home
               </Link>
             </div>
-          </div>
+          </div> */}
           <div className={`p-8 ${currentTheme === 'dark' ? 'bg-gray-900' : 'bg-white'} ${currentTheme === 'dark' ? 'text-white' : 'text-black'}`}>
             <ReactMarkdown
               rehypePlugins={[rehypeRaw]}
