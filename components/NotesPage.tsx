@@ -3,21 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import { ModeToggle } from './mode-toggle';
+
 
 interface NotesRendererProps {
   notes: string;
 }
 
 const NotesRenderer: React.FC<NotesRendererProps> = ({ notes }) => {
-  const { theme, resolvedTheme } = useTheme();
-  const [currentTheme, setCurrentTheme] = useState(resolvedTheme);
-
-  useEffect(() => {
-    setCurrentTheme(resolvedTheme);
-  }, [resolvedTheme]);
 
   return (
     <div className="">
@@ -34,7 +26,7 @@ const NotesRenderer: React.FC<NotesRendererProps> = ({ notes }) => {
               </Link>
             </div>
           </div> */}
-          <div className={`p-8 ${currentTheme === 'dark' ? 'bg-gray-900' : 'bg-white'} ${currentTheme === 'dark' ? 'text-white' : 'text-black'}`}>
+          <div className="p-8">
             <ReactMarkdown
               rehypePlugins={[rehypeRaw]}
               components={{

@@ -1,62 +1,70 @@
-"use client"
-import { signIn, signOut } from "next-auth/react"
+"use client";
+import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button"; // Importing the Shadcn Button component
+import { LogIn, LogOut } from "lucide-react"
+import Link from "next/link";
 export default function TopBar() {
-    const session = useSession();
-    const router = useRouter();
-    const pathname = usePathname();
-    session.data?.user?.image
-    const handleSignIn = async () => {
-        await signIn(undefined, { callbackUrl: '/convert' });
-    };
+  const session = useSession();
+  const router = useRouter();
+  const pathname = usePathname();
+  const showConvertButton = (pathname === '/' || pathname.startsWith('/video/')) && session.data?.user;
 
-    const handleSignOut = async () => {
-        await signOut({ callbackUrl: '/' });
-    };
+  const handleSignIn = async () => {
+    await signIn(undefined, { callbackUrl: '/convert' });
+  };
 
-    const showConvertButton = (pathname === '/' || pathname.startsWith('/video/')) &&  session.data?.user;
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: '/' });
+  };
 
-    return (
-        <header className="px-4 lg:px-6 h-14 flex items-center bg-muted">
-      <button 
-        onClick={() => router.push('/')} 
-        className="flex items-center justify-center text-xl font-bold ${currentTheme === 'dark' ? 'text-white' : 'text-black'}`"
-      >
+  return (
+    <header className="px-8 h-14 flex items-center bg-muted">
+      <Link href="/" className="flex items-center justify-center text-xl font-bold">
         YT Digest
-      </button>
+      </Link>
+
+
       <nav className="ml-auto flex items-center gap-4 sm:gap-6">
         {showConvertButton && pathname !== '/convert' && (
-          <button 
+          <Button
             onClick={() => router.push('/convert')}
-            className="text-sm font-medium hover:underline underline-offset-4 p-1"
+            variant="ghost"
+            className="text-sm font-medium p-2"
           >
             Convert
-          </button>
+          </Button>
         )}
         {!session?.data ? (
-          <button 
-            className="rounded-md bg-primary text-sm font-medium text-primary-foreground shadow p-1 px-2"
+          <Button
+            variant="ghost"
             onClick={handleSignIn}
+            title="Sign In"
+            className="p-0"
           >
-            Sign In
-          </button>
+            <LogIn className="h-5 w-5" />
+            <span className="sr-only">Sign In</span>
+          </Button>
         ) : (
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
               <AvatarImage src={session.data?.user?.image || ''} alt={session.data?.user?.name || 'User'} />
               <AvatarFallback>{session.data?.user?.name || 'U'}</AvatarFallback>
             </Avatar>
-            <button 
-              className="rounded-md bg-primary text-sm font-medium text-primary-foreground shadow p-1 px-2"
+            <Button
+              variant="ghost"
               onClick={handleSignOut}
+              title="Sign Out"
+              className="p-0"
             >
-              Sign Out
-            </button>
+              <LogOut className="h-5 w-5" />
+              <span className="sr-only">Sign Out</span>
+            </Button>
           </div>
         )}
       </nav>
     </header>
-    )
+  );
 }
