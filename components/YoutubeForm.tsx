@@ -15,7 +15,6 @@ import { Label } from "@/components/ui/label"
 import { sendToConvert } from "@/app/lib/actions/sendToConvert"
 import { ButtonLoading } from "./ButtonLoading"
 import { validateYTLink } from "@/app/lib/actions/validateYTLink"
-import { addNewVideo } from "@/app/lib/actions/addNewVideo"
 import { ModeToggle } from "./mode-toggle"
 
 export function YoutubeForm() {
