@@ -18,7 +18,6 @@ export async function sendToConvert(url: string) {
         });
 
         revalidatePath('/convert')
-        
         return response.data
     } catch (error) {
         console.error('Error in Converting:', error)
