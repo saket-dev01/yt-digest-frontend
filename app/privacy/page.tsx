@@ -12,7 +12,7 @@ export default async function Page() {
                 </p>
                 <h3 className="text-2xl font-bold">Information Collection</h3>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  We collect certain personal information from you, such as your name and email address, when you use Google OAuth to sign in to YT Digest. This information is used solely to relate your converted videos to your account.
+                  We collect certain personal information from you, such as your name, email address and photo, when you use Google OAuth to sign in to YT Digest. This information is used solely to relate your converted videos to your account.
                 </p>
                 <h3 className="text-2xl font-bold">How We Use Your Information</h3>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
